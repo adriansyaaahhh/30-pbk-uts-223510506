@@ -1,6 +1,12 @@
 <template>
   <div id="app">
-    <Navbar @navigate="currentSection = $event" />
+    <Navbar @navigate="setCurrentSection">
+      <!-- Slot untuk konten tambahan -->
+      <template v-slot:custom-content>
+        <button @click="handleButtonClick" class="custom-button">Klik Saya!</button>
+      </template>
+    </Navbar>
+    <!-- Konten untuk komponen terpilih -->
     <component :is="currentSectionComponent" />
   </div>
 </template>
@@ -25,14 +31,29 @@ export default {
     currentSectionComponent() {
       return this.currentSection === 'todos' ? 'Kegiatan' : 'Posts';
     }
+  },
+  methods: {
+    handleButtonClick() {
+      alert(`Sedang berada di ${this.currentSection}`);
+    },
+    setCurrentSection(section) {
+      this.currentSection = section;
+    }
   }
 };
 </script>
 
 <style>
-#app {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
+.custom-button {
+  background-color: white; /* Warna latar belakang putih */
+  color: #333; /* Warna teks */
+  border: 1px solid #333; /* Tepi hitam */
+  padding: 5px 10px; /* Padding untuk mengatur ukuran tombol */
+  border-radius: 4px; /* Mengatur sudut tombol */
+  cursor: pointer;
+}
+
+.custom-button:hover {
+  background-color: #f0f0f0; /* Warna latar belakang saat tombol dihover */
 }
 </style>

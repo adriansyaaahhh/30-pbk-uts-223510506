@@ -33,6 +33,10 @@
 
 <script>
 export default {
+  props: {
+    tasks: Array,
+    showOnlyUncompleted: Boolean
+  },
   data() {
     return {
       newTask: {
