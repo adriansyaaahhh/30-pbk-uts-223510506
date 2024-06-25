@@ -2,23 +2,18 @@
   <nav class="navbar">
     <div class="nav-brand">MENU</div>
     <ul class="nav-links">
-      <li><a href="#" @click.prevent="navigate('todos')">TODOS</a></li>
-      <li><a href="#" @click.prevent="navigate('posts')">POST</a></li>
+      <li><router-link to="/todos">TODOS</router-link></li>
+      <li><router-link to="/posts">POST</router-link></li>
+      <li><router-link to="/photos">PHOTOS</router-link></li>
     </ul>
-    <!-- Slot untuk konten tambahan -->
     <slot name="custom-content"></slot>
   </nav>
 </template>
 
 <script>
-export default {
-  methods: {
-    navigate(section) {
-      this.$emit('navigate', section);
-    }
-  }
-};
+
 </script>
+
 
 <style scoped>
 .navbar {
